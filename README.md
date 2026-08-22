@@ -1,9 +1,26 @@
-# CTX Handoff Starter Kit v0.1
+# CTX Handoff Starter Kit v0.1.1
 
 AIとの長い作業を、**新しいチャットや別のAIへ引き継ぐ**ための無料公開版スターターキットです。
 
 前回の「決定したこと」「保留していること」「却下したこと」「次にやること」を1枚のCTXにまとめ、
 受け取ったAIに理解内容を確認させてから作業を再開します。
+
+## 使い始める前に —— これは何？
+
+**インストールやセットアップは不要です。**
+中身はすべてテキストファイル（Markdown）で、ソフトウェアではありません。
+
+使い方はこれだけです。
+
+1. このリポジトリのファイルを開く（GitHubの画面上でそのまま開けます）
+2. 中のテキストを**コピー**する
+3. AIのチャットに**貼り付ける**
+
+ファイルをダウンロードしてもしなくても、どちらでも使えます。
+画面上でファイルを開いて本文をコピーすれば、それで十分です。
+
+> GitHubに不慣れな場合、ここは「テンプレートを置いてある棚」と思ってください。
+> 必要なものを見て、コピーして使うだけです。
 
 ## こんな方へ
 
@@ -19,6 +36,24 @@ AIとの長い作業を、**新しいチャットや別のAIへ引き継ぐ**た
 3. [`templates/RECEIVER_CONFIRMATION_MIN.md`](templates/RECEIVER_CONFIRMATION_MIN.md) の受領確認文を続けて貼る
 4. AIが現在地・決定・保留・制約・次の一手を理解できているか確認する
 5. 自分の作業では [`templates/CTX_HANDOFF_MIN_TEMPLATE.md`](templates/CTX_HANDOFF_MIN_TEMPLATE.md) を埋める
+
+## AIにCTXを作らせる場合
+
+自分で埋めるほかに、作業中のAIにCTXを作らせることもできます。
+安全側の基本形は、次の2行です。
+
+```
+CTXを作成してください。
+対象候補が複数ある場合は、CTXを作る前にどれを対象にするか確認してください。
+```
+
+2行目は、対象候補が複数あるときだけAIに確認させるための安全弁です。
+対象が明らかに1件だけの場合は、「CTXを作成してください」だけでも使えます。
+
+生成後は、CTXの**「目的」が意図した案件になっているか**を、渡す前に一度確認してください。
+
+対象を明示しない状態で別案件のCTXが生成された実測例を
+[`examples/SAMPLE_KURUMIDO.md`](examples/SAMPLE_KURUMIDO.md) に収録しています。
 
 ## 何を揃えるのか
 
@@ -70,7 +105,7 @@ AIごとの考え方や表現は違っても、作業の土台となる決定・
 
 - [`templates/CTX_HANDOFF_MIN_TEMPLATE.md`](templates/CTX_HANDOFF_MIN_TEMPLATE.md) — 記入用テンプレート
 - [`templates/RECEIVER_CONFIRMATION_MIN.md`](templates/RECEIVER_CONFIRMATION_MIN.md) — 受領AIへの確認文
-- [`examples/SAMPLE_KURUMIDO.md`](examples/SAMPLE_KURUMIDO.md) — 記入例＋3AI実測
+- [`examples/SAMPLE_KURUMIDO.md`](examples/SAMPLE_KURUMIDO.md) — 記入例＋3AI実測＋利用者提供の実測
 - [`FAQ.md`](FAQ.md) — よくある質問
 - [`TERMS.md`](TERMS.md) — 利用条件
 
@@ -81,4 +116,4 @@ AIごとの考え方や表現は違っても、作業の土台となる決定・
 
 ---
 
-v0.1 / 2026-08-16
+v0.1.1 / 2026-08-22
