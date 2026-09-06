@@ -2,6 +2,19 @@
 
 # CTX Handoff
 
+## 再開識別情報
+<!-- 「正しいCTX」だけでなく「今使うべきCTX」かを判定するための識別欄です。不明な欄は推測せず「未確認」と書いてください。 -->
+
+- WORK ID：
+- ACTIVE WORKSTREAM：
+- CURRENT OBJECTIVE：
+- OBJECTIVE KEY：
+- PARENT WORK：
+- CURRENT POSITION：
+- NEXT ACTION：
+- RESUME BASIS：
+- RELATED / SIDE WORK：なし / [内容]
+
 ## 目的
 <!-- この作業で最終的に何をしたいか -->
 
