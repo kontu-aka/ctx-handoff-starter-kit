@@ -1,4 +1,4 @@
-# CTX Handoff Starter Kit v0.1.1
+# CTX Handoff Starter Kit v0.1.2
 
 AIとの長い作業を、**新しいチャットや別のAIへ引き継ぐ**ための無料公開版スターターキットです。
 
@@ -33,10 +33,11 @@ AIとの長い作業を、**新しいチャットや別のAIへ引き継ぐ**た
 
 1. [`examples/SAMPLE_KURUMIDO.md`](examples/SAMPLE_KURUMIDO.md) の記入済みCTXを見る
 2. CTX部分をコピーして、新しいチャットまたは別のAIへ貼る
-3. [`templates/RECEIVER_CONFIRMATION_MIN.md`](templates/RECEIVER_CONFIRMATION_MIN.md) の受領確認文を続けて貼る
-4. AIが**WORK ID・workstream・目的・現在地・決定・保留・制約・次の一手**を理解できているか確認する
-5. `RESUME ENTRY = PASS` のときだけ作業を再開する
-6. 自分の作業では [`templates/CTX_HANDOFF_MIN_TEMPLATE.md`](templates/CTX_HANDOFF_MIN_TEMPLATE.md) を埋める
+3. [`templates/RECEIVER_CONFIRMATION_MIN.md`](templates/RECEIVER_CONFIRMATION_MIN.md) の「今回進めたい作業」に、いま再開したい作業を1行で書く
+4. その受領確認文を続けて貼る
+5. AIが**WORK ID・workstream・目的・現在地・決定・保留・制約・次の一手**を理解できているか確認する
+6. `RESUME ENTRY = PASS` のときだけ作業を再開する
+7. 自分の作業では [`templates/CTX_HANDOFF_MIN_TEMPLATE.md`](templates/CTX_HANDOFF_MIN_TEMPLATE.md) を埋める
 
 ## AIにCTXを作らせる場合
 
@@ -76,10 +77,10 @@ CTXでは、会話全部を保存するのではなく、**続きから再開す
 **「内容が正しいCTX」でも、「今使うべきCTX」とは限りません。**
 並行して複数案件を進めている場合、別案件の正しいCTXを受け取ってしまうことがあります。
 
-そのため受領時は、今回の依頼とCTXの再開識別情報を照合し、次のいずれかを確認します。
+そのため受領時は、まず「今回進めたい作業」を1行で示し、それとCTXの再開識別情報を照合します。
 
 - `PASS`：今回進めたい作業と一致。次の一手へ進める。
-- `CONFIRM_REQUIRED`：情報不足や複数候補があり、どれを再開するか確認が必要。
+- `CONFIRM_REQUIRED`：今回進めたい作業が示されていない、情報不足や複数候補があり、どれを再開するか確認が必要。
 - `BLOCK`：有効なCTXだが、今回進めたい作業とは別のworkstream／目的。
 - `SWITCH_REQUIRED`：別workstreamへ切り替える前提の確認が必要。
 
@@ -133,4 +134,4 @@ AIごとの考え方や表現は違っても、作業の土台となる決定・
 
 ---
 
-v0.1.1 / 2026-08-22
+v0.1.2 / 2026-09-07
