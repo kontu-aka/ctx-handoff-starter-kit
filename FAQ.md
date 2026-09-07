@@ -87,9 +87,10 @@ CTXを作成してください。
 
 複数案件を並行していると、**内容自体は正しいけれど、今再開したい案件とは別のCTX**を渡してしまうことがあります。
 
-受領時は `templates/RECEIVER_CONFIRMATION_MIN.md` を使い、今回の依頼とCTXのWORK ID・workstream・目的・親作業を照合してください。
+受領時は `templates/RECEIVER_CONFIRMATION_MIN.md` の「今回進めたい作業」に、いま再開したい案件・作業を1行で書き、それとCTXのWORK ID・workstream・目的・親作業を照合してください。
 
 - `PASS`なら再開できます。
+- 「今回進めたい作業」が示されていない場合は `CONFIRM_REQUIRED` です。
 - `CONFIRM_REQUIRED`、`BLOCK`、`SWITCH_REQUIRED`なら作業を止め、どの案件を進めるか確認します。
 
 特にGit/GitHubへの書き込み、公開、削除、外部送信などは、`PASS`になるまで実行しない運用を推奨します。
