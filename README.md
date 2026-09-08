@@ -89,6 +89,8 @@ CTXでは、会話全部を保存するのではなく、**続きから再開す
 
 ## 3つのAIでの実測
 
+この実測は、Resume Entry識別情報が追加される前の旧形式CTXと、当時の受領確認文で行いました。
+
 2026-08-16 に、同じサンプルCTXを ChatGPT・Claude・Gemini に渡して確認しました。
 
 | 確認項目 | ChatGPT | Claude | Gemini |
