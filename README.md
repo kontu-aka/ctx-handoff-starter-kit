@@ -1,9 +1,9 @@
-# CTX Handoff Starter Kit v0.1.1
+# CTX Handoff Starter Kit v0.1.2
 
 AIとの長い作業を、**新しいチャットや別のAIへ引き継ぐ**ための無料公開版スターターキットです。
 
 前回の「決定したこと」「保留していること」「却下したこと」「次にやること」を1枚のCTXにまとめ、
-受け取ったAIに理解内容を確認させてから作業を再開します。
+受け取ったAIに理解内容と**今回再開すべきworkstreamかどうか**を確認させてから作業を再開します。
 
 ## 使い始める前に —— これは何？
 
@@ -33,9 +33,11 @@ AIとの長い作業を、**新しいチャットや別のAIへ引き継ぐ**た
 
 1. [`examples/SAMPLE_KURUMIDO.md`](examples/SAMPLE_KURUMIDO.md) の記入済みCTXを見る
 2. CTX部分をコピーして、新しいチャットまたは別のAIへ貼る
-3. [`templates/RECEIVER_CONFIRMATION_MIN.md`](templates/RECEIVER_CONFIRMATION_MIN.md) の受領確認文を続けて貼る
-4. AIが現在地・決定・保留・制約・次の一手を理解できているか確認する
-5. 自分の作業では [`templates/CTX_HANDOFF_MIN_TEMPLATE.md`](templates/CTX_HANDOFF_MIN_TEMPLATE.md) を埋める
+3. [`templates/RECEIVER_CONFIRMATION_MIN.md`](templates/RECEIVER_CONFIRMATION_MIN.md) の「今回進めたい作業」に、いま再開したい作業を1行で書く
+4. その受領確認文を続けて貼る
+5. AIが**WORK ID・workstream・目的・現在地・決定・保留・制約・次の一手**を理解できているか確認する
+6. `RESUME ENTRY = PASS` のときだけ作業を再開する
+7. 自分の作業では [`templates/CTX_HANDOFF_MIN_TEMPLATE.md`](templates/CTX_HANDOFF_MIN_TEMPLATE.md) を埋める
 
 ## AIにCTXを作らせる場合
 
@@ -50,7 +52,7 @@ CTXを作成してください。
 2行目は、対象候補が複数あるときだけAIに確認させるための安全弁です。
 対象が明らかに1件だけの場合は、「CTXを作成してください」だけでも使えます。
 
-生成後は、CTXの**「目的」が意図した案件になっているか**を、渡す前に一度確認してください。
+生成後は、CTXの**「目的」だけでなく「WORK ID・ACTIVE WORKSTREAM・OBJECTIVE KEY・PARENT WORK」**が意図した案件になっているかを、渡す前に一度確認してください。
 
 対象を明示しない状態で別案件のCTXが生成された実測例を
 [`examples/SAMPLE_KURUMIDO.md`](examples/SAMPLE_KURUMIDO.md) に収録しています。
@@ -59,6 +61,7 @@ CTXを作成してください。
 
 CTXでは、会話全部を保存するのではなく、**続きから再開するために必要な状態**を残します。
 
+- 再開識別情報（WORK ID、ACTIVE WORKSTREAM、CURRENT OBJECTIVE、OBJECTIVE KEY、PARENT WORK、RESUME BASISなど）
 - 目的
 - 現在地
 - 決定事項
@@ -69,7 +72,24 @@ CTXでは、会話全部を保存するのではなく、**続きから再開す
 - 次にやること
 - 未確認事項
 
+## 再開前の安全確認
+
+**「内容が正しいCTX」でも、「今使うべきCTX」とは限りません。**
+並行して複数案件を進めている場合、別案件の正しいCTXを受け取ってしまうことがあります。
+
+そのため受領時は、まず「今回進めたい作業」を1行で示し、それとCTXの再開識別情報を照合します。
+
+- `PASS`：今回進めたい作業と一致。次の一手へ進める。
+- `CONFIRM_REQUIRED`：今回進めたい作業が示されていない、情報不足や複数候補があり、どれを再開するか確認が必要。
+- `BLOCK`：有効なCTXだが、今回進めたい作業とは別のworkstream／目的。
+- `SWITCH_REQUIRED`：別workstreamへ切り替える前提の確認が必要。
+
+`PASS`以外では、Git/GitHubへの書き込み、公開、削除、外部送信などの状態変更へ進みません。
+詳しい受領文は [`templates/RECEIVER_CONFIRMATION_MIN.md`](templates/RECEIVER_CONFIRMATION_MIN.md) を使ってください。
+
 ## 3つのAIでの実測
+
+この実測は、Resume Entry識別情報が追加される前の旧形式CTXと、当時の受領確認文で行いました。
 
 2026-08-16 に、同じサンプルCTXを ChatGPT・Claude・Gemini に渡して確認しました。
 
@@ -116,4 +136,4 @@ AIごとの考え方や表現は違っても、作業の土台となる決定・
 
 ---
 
-v0.1.1 / 2026-08-22
+v0.1.2 / 2026-09-07
