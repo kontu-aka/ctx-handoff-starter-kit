@@ -31,6 +31,23 @@ CTX Handoffは、作業の「現在地・決定・保留・却下・制約・次
 
 現在の会話と、実際に読める添付・利用者の回答だけを材料にCTX草案を作ってください。
 
+### 複数の案件・作業が混在している場合
+
+現在の会話や添付の中に、複数の案件・作業・workstream候補がある場合、AIが対象を推測して1つを勝手に選んではいけません。
+
+・利用者が1つだけCTX化したい場合：候補を短く列挙し、「どれをCTXにしますか？」と確認して停止します。
+・利用者が対象を明示済みの場合：同じ確認を繰り返さず、その対象だけをCTX化します。
+・利用者が「複数をCTXにして」と依頼した場合：複数を1枚のCTXへ混ぜず、**workstreamごとに独立したCTXを1つずつ作ります。**
+
+複数CTXを作る場合は、それぞれに別の WORK ID / ACTIVE WORKSTREAM / CURRENT OBJECTIVE / OBJECTIVE KEY / NEXT ACTION を持たせてください。
+共通の上位作業がある場合は PARENT WORK を共通にして構いません。
+相互に関係がある場合は RELATED / SIDE WORK に他のCTXのWORK IDを記載できますが、決定・保留・却下・次の一手を別workstream間で混ぜないでください。
+
+複数CTXを1つのファイルまたは1つのメッセージにまとめて渡す場合は、先頭に「CTX SET INDEX」を付け、各CTXの WORK ID / ACTIVE WORKSTREAM / CURRENT OBJECTIVE / NEXT ACTION を一覧にしてください。
+このまとめは配布上の束ね方であり、複数workstreamを1つのCTXとして扱う意味ではありません。
+
+複数CTXを受け取った再開先AIは、利用者が今回再開する1つを指定するまで `RESUME ENTRY = CONFIRM_REQUIRED` として停止し、AI自身で再開対象を選びません。
+
 足りない情報だけを短く確認します。必要なら、次をまとめて1回で聞いてください。
 
 ・何の作業か  
