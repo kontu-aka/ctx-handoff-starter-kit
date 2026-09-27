@@ -9,16 +9,24 @@ AIとの長い作業を、**新しいチャットや別のAIへ引き継ぐ**た
 
 説明を先に読む必要はありません。
 
+### 新しくCTXを作るとき
+
 1. [`START_WITH_AI.md`](START_WITH_AI.md) を開いて保存する、または本文をコピーする
-2. 普段使っているAIの新しいチャットへ渡す
+2. **CTXにしたい作業をしている現在のチャット**へ渡す
 3. 次の1文だけ送る
 
 ```text
-このファイルを最後まで読んで、CTX Handoffを使える状態にしてください。今回は私の実際の作業で使います。
+このファイルを最後まで読んで、このチャットの作業からCTX Handoffを作れる状態にしてください。
 ```
 
-AIが、今の実際の作業から必要な情報を確認し、CTX草案の作成または既存CTXの受領確認を案内します。
+AIが、そのチャット内の実際の作業から必要な情報を確認し、CTX草案の作成を案内します。
+チャット内に複数案件がある場合は、AIが勝手に1件を選ばず、どれをCTX化するか確認します。
 くるみ堂サンプルを先に試す必要はありません。
+
+### 作成済みCTXで再開するとき
+
+新しいチャットまたは別のAIへ、**作成済みCTX**を渡して「このCTXで再開して」と依頼します。
+再開先AIがResume Entryを確認し、対象が一致しても同じ応答では作業を始めず、確認後の「進めて」を待ちます。
 
 手動で内容を確認しながら使いたい場合は、このREADMEの従来手順もそのまま利用できます。
 
@@ -46,7 +54,7 @@ AIが、今の実際の作業から必要な情報を確認し、CTX草案の作
 - 新しいチャットを開くたびに、前回の経緯を説明し直している
 - 「これ決めたはずなのに」「これは却下したはずなのに」が起きたことがある
 
-## まず試す
+## 手動で試す（従来手順）
 
 1. [`examples/SAMPLE_KURUMIDO.md`](examples/SAMPLE_KURUMIDO.md) の記入済みCTXを見る
 2. CTX部分をコピーして、新しいチャットまたは別のAIへ貼る
@@ -140,6 +148,7 @@ AIごとの考え方や表現は違っても、作業の土台となる決定・
 
 ## ファイル
 
+- [`START_WITH_AI.md`](START_WITH_AI.md) — 説明を先に読まず、作業中のAIにCTX作成を案内させる入口
 - [`templates/CTX_HANDOFF_MIN_TEMPLATE.md`](templates/CTX_HANDOFF_MIN_TEMPLATE.md) — 記入用テンプレート
 - [`templates/RECEIVER_CONFIRMATION_MIN.md`](templates/RECEIVER_CONFIRMATION_MIN.md) — 受領AIへの確認文
 - [`examples/SAMPLE_KURUMIDO.md`](examples/SAMPLE_KURUMIDO.md) — 記入例＋3AI実測＋利用者提供の実測
