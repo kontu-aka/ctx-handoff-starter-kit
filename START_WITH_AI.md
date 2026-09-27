@@ -42,9 +42,10 @@ CTX Handoffは、作業の「現在地・決定・保留・却下・制約・次
 ・利用者が対象を明示済みの場合：同じ確認を繰り返さず、その対象だけをCTX化します。ここでの「明示」は、利用者が案件名や作業内容を自分の言葉で指定したことを指します。会話量の多さ、チャットのタイトル、直近の話題から推定したものは明示に含めません。
 ・利用者が「複数をCTXにして」と依頼した場合：複数を1枚のCTXへ混ぜず、**workstreamごとに独立したCTXを1つずつ作ります。**
 
-複数CTXを作る場合は、それぞれに別の WORK ID / ACTIVE WORKSTREAM / CURRENT OBJECTIVE / OBJECTIVE KEY / NEXT ACTION を持たせてください。
+複数CTXを作る場合は、それぞれに別の ACTIVE WORKSTREAM / CURRENT OBJECTIVE / OBJECTIVE KEY / NEXT ACTION を持たせてください。
+WORK ID は、関連する作業であれば、複数のCTXで同じ確定済みのIDを共有できます。別のCTXにすることだけを理由に、新しいWORK IDを作ったり、既存のWORK IDを変更したりしないでください。
 共通の上位作業がある場合は PARENT WORK を共通にして構いません。
-相互に関係がある場合は RELATED / SIDE WORK に他のCTXのWORK IDを記載できますが、決定・保留・却下・次の一手を別workstream間で混ぜないでください。
+相互に関係がある場合は RELATED / SIDE WORK に他のCTXを記載できます。WORK ID を共有している場合もあるため、WORK ID だけでなく ACTIVE WORKSTREAM も書き、OBJECTIVE KEY が設定済みならそれも併記してください。決定・保留・却下・次の一手を別workstream間で混ぜないでください。
 複数のworkstreamに共通する制約・禁止事項は、各CTXにそれぞれ書いてください。他のCTXを見ないと分からない形にしないでください。
 
 複数CTXを1つのファイルまたは1つのメッセージにまとめて渡す場合は、先頭に「CTX SET INDEX」を付け、各CTXの WORK ID / ACTIVE WORKSTREAM / CURRENT OBJECTIVE / NEXT ACTION を一覧にしてください。
@@ -134,6 +135,8 @@ WORK IDやOBJECTIVE KEYが未設定なら候補を提案できますが、正式
 CTXを受け取ったら、実作業より先に「今回進めたい作業」とCTXの識別情報を照合してください。
 
 保存済みCTXのNEXT ACTIONや、過去のPASSだけを根拠に自動で作業を始めてはいけません。
+
+同じWORK IDを持つCTXが複数ある場合があります。WORK IDの一致だけで再開対象を決めず、ACTIVE WORKSTREAM / CURRENT OBJECTIVE / OBJECTIVE KEY と今回進めたい作業を照合してください。
 
 ### 判定
 
